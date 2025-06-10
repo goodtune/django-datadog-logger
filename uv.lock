@@ -715,6 +715,8 @@ dev = [
     { name = "coverage", version = "7.2.7", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.8'" },
     { name = "coverage", version = "7.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
     { name = "coverage", version = "7.8.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
+    { name = "django-test-plus", version = "2.2.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.8'" },
+    { name = "django-test-plus", version = "2.2.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.8'" },
     { name = "tox", version = "3.28.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.8'" },
     { name = "tox", version = "4.25.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.8.*'" },
     { name = "tox", version = "4.26.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.9'" },
@@ -751,6 +753,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "coverage" },
+    { name = "django-test-plus", specifier = ">=2.2.3" },
     { name = "tox" },
     { name = "watchdog" },
 ]
@@ -763,6 +766,34 @@ pep8 = [
     { name = "black" },
     { name = "flake8" },
     { name = "isort" },
+]
+
+[[package]]
+name = "django-test-plus"
+version = "2.2.3"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version < '3.8'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/85/c7/23219e9d9dcdbb9298f13db3fe1a36dcfc7f49ea165a4cd3b7a2c11b0abe/django-test-plus-2.2.3.tar.gz", hash = "sha256:72e1ca5dcaaf4ad73c9c796ad6e0dc165db39f706c3ad822074d961f72eed743", size = 19103, upload-time = "2023-07-11T11:43:48.725Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/41/48/5626b3b75e1b845a84ee2deac230a78b8bbe6f01db3415882237259e8fc7/django_test_plus-2.2.3-py3-none-any.whl", hash = "sha256:5a8e26c9bf8eab092012c2cce9c605e0dba5a15879771feeb992c424504a18fe", size = 17684, upload-time = "2023-07-11T11:43:46.852Z" },
+]
+
+[[package]]
+name = "django-test-plus"
+version = "2.2.4"
+source = { registry = "https://pypi.org/simple" }
+resolution-markers = [
+    "python_full_version >= '3.11'",
+    "python_full_version == '3.10.*'",
+    "python_full_version == '3.9.*'",
+    "python_full_version >= '3.8.1' and python_full_version < '3.9'",
+    "python_full_version >= '3.8' and python_full_version < '3.8.1'",
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3f/56/7d78cffc6d3b4240264d0ae34a86f6e2a1ce76e57ac40c2db437c80c5306/django-test-plus-2.2.4.tar.gz", hash = "sha256:06488209a07dca60dc2bbeaeae5ce340d17344163e0b121709cdac7405c6d9ef", size = 18869, upload-time = "2024-06-24T11:22:07.638Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ea/5c/d1720506e57eac09f37c0731a0183982b03a6b76be2fbd364d784e75ca73/django_test_plus-2.2.4-py3-none-any.whl", hash = "sha256:96e4e16fabd3e0339a4b46e02a0a88c92c19800de38d00446571ea036614d332", size = 17485, upload-time = "2024-06-24T11:22:05.669Z" },
 ]
 
 [[package]]
