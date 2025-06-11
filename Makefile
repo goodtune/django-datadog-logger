@@ -52,7 +52,7 @@ lint: ## check style with flake8
 	$(UV) tox -e flake8
 
 test: ## run tests quickly with the default Python
-	DJANGO_SETTINGS_MODULE=tests.settings $(UV) -m unittest discover -v
+	PYTHONPATH=. $(UV) django-admin test --settings=tests.settings -v 2
 
 test-all: ## run tests on every Python version with tox
 	$(UV) tox

@@ -1,11 +1,10 @@
 """Tests for `django_datadog_logger` package."""
 
-from email import header
 import json
 import logging
-from unittest import skip
 from unittest.mock import patch
 
+import django
 from django.test import Client
 from freezegun import freeze_time
 from test_plus import TestCase
@@ -22,7 +21,6 @@ class DjangoDatadogLoggerTestCase(TestCase):
         record = logging.LogRecord("foo", logging.ERROR, "foo.py", 42, "This is an error", None, (None, None, None))
         formatter = DataDogJSONFormatter()
         json_record = formatter.json_record("Foo", {}, record)
-
         self.assertEqual(json_record.get("error.kind"), None)
 
 
@@ -80,12 +78,12 @@ class RequestLoggingMiddlewareTestCase(TestCase):
                     # ----------------------------------------
                     # These fields are from the RequestLoggingMiddleware.log_response method
                     # ----------------------------------------
-                    # "http.status_code": 200,  # FIXME: this should be present
+                    "http.status_code": 200,
                     "http.accept": None,
                     "http.method": "GET",
                     "http.referer": None,
                     "http.request_version": None,
-                    "http.useragent": "test-agent",
+                    "http.useragent": None if django.VERSION < (4, 0) else "test-agent",
                 }
             ],
         )
@@ -130,17 +128,17 @@ class RequestLoggingMiddlewareTestCase(TestCase):
                     # "usr.session_key": None,
                     "duration": 0.0,
                     # "db.statement": None,
-                    # "error.kind": 400,
-                    # "error.message": "Bad Request",
                     # ----------------------------------------
                     # These fields are from the RequestLoggingMiddleware.log_response method
                     # ----------------------------------------
-                    # "http.status_code": 400,  # FIXME: this should be present
+                    "http.status_code": 400,
+                    "error.kind": 400,
+                    "error.message": "Bad Request",
                     "http.accept": None,
                     "http.method": "GET",
                     "http.referer": None,
                     "http.request_version": None,
-                    "http.useragent": "test-agent",
+                    "http.useragent": None if django.VERSION < (4, 0) else "test-agent",
                 }
             ],
         )
@@ -189,14 +187,14 @@ class RequestLoggingMiddlewareTestCase(TestCase):
                     # ----------------------------------------
                     # These fields are from the RequestLoggingMiddleware.log_response method
                     # ----------------------------------------
-                    # "http.status_code": 500,  # FIXME: this should be present
-                    # "error.kind": 500,
-                    # "error.message": "Internal Server Error",
+                    "http.status_code": 500,
+                    "error.kind": 500,
+                    "error.message": "Internal Server Error",
                     "http.accept": None,
                     "http.method": "GET",
                     "http.referer": None,
                     "http.request_version": None,
-                    "http.useragent": "test-agent",
+                    "http.useragent": None if django.VERSION < (4, 0) else "test-agent",
                 }
             ],
         )

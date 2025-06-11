@@ -30,28 +30,4 @@ INSTALLED_APPS = [
     "django.contrib.auth",
 ]
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "json": {"()": "django_datadog_logger.formatters.datadog.DataDogJSONFormatter"},
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "json",
-        },
-    },
-    "loggers": {
-        "django_datadog_logger.middleware.request_log": {
-            "handlers": ["console"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-        "django_datadog_logger.middleware.error_log": {
-            "handlers": ["console"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-    },
-}
+DJANGO_DATADOG_LOGGER_EXTRA_INCLUDE = r"^django_datadog_logger\..*"

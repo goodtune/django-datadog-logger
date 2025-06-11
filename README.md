@@ -93,6 +93,10 @@ to the json log record, please set the following regular expression:
 DJANGO_DATADOG_LOGGER_EXTRA_INCLUDE = r"^(django_datadog_logger|my_project)(|\..+)$"
 ```
 
+Note: if you do not set `DJANGO_DATADOG_LOGGER_EXTRA_INCLUDE` with at least
+`r"^django_datadog_logger\..*"` the `http.status_code` and `error.*` fields
+will not be in your JSON payload.
+
 Add Celery logger configuration and request_id tracking decorator to
 tasks:
 
