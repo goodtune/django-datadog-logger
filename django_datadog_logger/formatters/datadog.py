@@ -200,3 +200,12 @@ class DataDogJSONFormatter(json_log_formatter.JSONFormatter):
             for attr_name in record.__dict__
             if attr_name not in json_log_formatter.BUILTIN_ATTRS.union(EXCLUDE_FROM_EXTRA_ATTRS)
         }
+
+
+class DataDogJSONTestFormatter(DataDogJSONFormatter):
+    def __init__(self, wsgi_request, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.wsgi_request = wsgi_request
+
+    def get_wsgi_request(self):
+        return self.wsgi_request

@@ -42,6 +42,7 @@ Homepage = "https://github.com/namespace-ee/django-datadog-logger"
 dev = [
     "coverage",
     "django-test-plus>=2.2.3",
+    "freezegun>=1.5.1",
     "tox",
     "watchdog",
 ]
